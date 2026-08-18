@@ -1,16 +1,23 @@
 # CodeAlpha E-Commerce Store
 
-A simple e-commerce website developed as part of the CodeAlpha internship project.
+A full-stack e-commerce website developed as part of the CodeAlpha internship project.
 
 ## Features
 
+- User registration and login
+- Secure password hashing using bcrypt
+- User logout and session management
 - View available products
 - View product details
 - Add products to cart
-- Update cart items
-- Checkout
+- Update cart quantities
+- Remove products from cart
+- Stock management
+- Checkout system
 - Order confirmation
-- View order history
+- Persistent order storage
+- User-specific order history
+- SQLite database for users, products, and orders
 - Responsive and simple user interface
 
 ## Technologies Used
@@ -18,10 +25,26 @@ A simple e-commerce website developed as part of the CodeAlpha internship projec
 - Node.js
 - Express.js
 - EJS
+- SQLite
+- better-sqlite3
+- bcryptjs
+- express-session
 - HTML
 - CSS
 - JavaScript
-- JSON
+
+## Database
+
+The project uses SQLite to permanently store:
+
+- Users
+- Products
+- Orders
+- Order items
+
+Passwords are securely hashed using `bcryptjs`.
+
+The local SQLite database file (`ecommerce.db`) is excluded from GitHub using `.gitignore`.
 
 ## Project Structure
 
@@ -37,20 +60,12 @@ CodeAlpha_EcommerceStore/
 │   ├── cart.ejs
 │   ├── checkout.ejs
 │   ├── order-confirmation.ejs
-│   └── orders.ejs
+│   ├── orders.ejs
+│   ├── login.ejs
+│   └── register.ejs
 ├── .gitignore
+├── database.js
 ├── package.json
+├── package-lock.json
 ├── README.md
 └── server.js
-## How to Run
-
-1. Install Node.js.
-2. Open the project folder in VS Code.
-3. Open the terminal.
-4. Run `npm install`
-5. Run `node server.js`
-6. Open the URL shown in the terminal in your browser.
-
-## Author
-
-CodeAlpha Internship Project
