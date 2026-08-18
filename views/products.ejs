@@ -12,17 +12,50 @@
 <body>
 
     <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="logo">
-            🛍️ CodeAlpha Store
-        </div>
+    <!-- Navigation Bar -->
+<nav class="navbar">
 
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/cart">🛒 Cart</a>
-            <a href="/orders">📦 Orders</a>
-        </div>
-    </nav>
+    <div class="logo">
+        🛍️ CodeAlpha Store
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">Home</a>
+
+        <a href="/cart">
+            🛒 Cart
+        </a>
+
+        <% if (user) { %>
+
+            <a href="/orders">
+                📦 My Orders
+            </a>
+
+            <span>
+                👤 Hello, <%= user.name %>
+            </span>
+
+            <a href="/logout">
+                🚪 Logout
+            </a>
+
+        <% } else { %>
+
+            <a href="/login">
+                🔑 Login
+            </a>
+
+            <a href="/register">
+                📝 Register
+            </a>
+
+        <% } %>
+
+    </div>
+
+</nav>
 
 
     <!-- Hero Section -->
