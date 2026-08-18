@@ -26,10 +26,12 @@ const products = JSON.parse(
     )
 );
 let orders = [];
+
 // Home page
 app.get("/", (req, res) => {
     res.render("products", { products });
 });
+
 app.get("/product/:id", (req, res) => {
     const product = products.find(p => p.id === req.params.id);
 
@@ -39,6 +41,7 @@ app.get("/product/:id", (req, res) => {
 
     res.render("product-details", { product });
 });
+
 app.get("/cart", (req, res) => {
     const cart = req.session.cart || [];
 
@@ -48,6 +51,7 @@ app.get("/cart", (req, res) => {
 
     res.render("cart", { cart, total });
 });
+
 app.post("/cart/add/:id", (req, res) => {
     const product = products.find(p => p.id === req.params.id);
 
@@ -62,15 +66,7 @@ app.post("/cart/add/:id", (req, res) => {
     const existingItem = req.session.cart.find(
         item => item.id === product.id
     );
-app.post("/cart/remove/:id", (req, res) => {
-    if (req.session.cart) {
-        req.session.cart = req.session.cart.filter(
-            item => item.id !== req.params.id
-        );
-    }
 
-    res.redirect("/cart");
-});
     if (existingItem) {
         existingItem.quantity += 1;
     } else {
@@ -85,6 +81,17 @@ app.post("/cart/remove/:id", (req, res) => {
 
     res.redirect("/cart");
 });
+
+app.post("/cart/remove/:id", (req, res) => {
+    if (req.session.cart) {
+        req.session.cart = req.session.cart.filter(
+            item => item.id !== req.params.id
+        );
+    }
+
+    res.redirect("/cart");
+});
+
 app.post("/cart/update/:id", (req, res) => {
     const cart = req.session.cart || [];
 
@@ -106,6 +113,7 @@ app.post("/cart/update/:id", (req, res) => {
 
     res.redirect("/cart");
 });
+
 app.get("/checkout", (req, res) => {
     const cart = req.session.cart || [];
 
@@ -116,6 +124,10 @@ app.get("/checkout", (req, res) => {
     const total = cart.reduce((sum, item) => {
         return sum + (item.price * item.quantity);
     }, 0);
+
+    res.render("checkout", { cart, total });
+});
+
 app.post("/checkout", (req, res) => {
     const cart = req.session.cart || [];
 
@@ -159,18 +171,19 @@ app.post("/checkout", (req, res) => {
         total: total
     };
     orders.push(order);
+
     // Clear cart after successful order
     req.session.cart = [];
 
     // Show confirmation
     res.render("order-confirmation", { order });
 });
-    res.render("checkout", { cart, total });
-});
-// Start server
+
 app.get("/orders", (req, res) => {
     res.render("orders", { orders });
 });
+
+// Start server
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
