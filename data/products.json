@@ -1,0 +1,26 @@
+[
+  {
+    "id": "p1",
+    "name": "Wireless Headphones",
+    "description": "Noise-cancelling over-ear headphones with 30hr battery life.",
+    "price": 59.99,
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400",
+    "stock": 25
+  },
+  {
+    "id": "p2",
+    "name": "Mechanical Keyboard",
+    "description": "RGB backlit mechanical keyboard with blue switches.",
+    "price": 79.99,
+    "image": "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=400",
+    "stock": 15
+  },
+  {
+    "id": "p3",
+    "name": "Canvas Backpack",
+    "description": "Durable backpack with a padded laptop compartment.",
+    "price": 34.99,
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400",
+    "stock": 40
+  }
+]
